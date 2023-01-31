@@ -33,3 +33,5 @@ build/
 .vscode/
 
 /src/main/resources/secret.properties
+spring-shell.log
+.envrc
