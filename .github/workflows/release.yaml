@@ -1,6 +1,10 @@
 name: Main
 
-on: push
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
 
 jobs:
   build:
@@ -8,11 +12,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - uses: ayltai/setup-graalvm@v1
+      - uses: graalvm/setup-graalvm@v1
         with:
-          java-version: 17
-          graalvm-version: 22.3
-          native-image: true
+          version: 22.3
+          java-version: '17'
+          components: 'native-image'
       - name: Build
         run: ./mvnw -Pnative native:compile -DskipTests
       - name: Release
